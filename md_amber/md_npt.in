@@ -1,0 +1,40 @@
+Explicit solvent molecular dynamics constant pressure 10 ns MD
+! Ref: https://ambermd.org/doc12/Amber21.pdf!page=358
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! CONTROL !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+&cntrl
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! INPUT !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  imin      = 0,        ! Energy minimization, 0: w/o, 1: with
+  irest     = 0,        ! Restart calculation from input file, 0: fresh, 1: restart
+  ntx       = 1,        ! Read input coordinates and velocities, no velocity
+  ig        = -1,       ! Random seed
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! INTEGRATOR !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  dt        = 0.002,    ! Timestep (ps)
+  nstlim    = 50000,    ! Simulation duration (timesteps)
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! OUTPUT !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  ntxo      = 2,        ! File format of  final coordinates, 
+                        ! 1: ASCII, 2: NetCDF binary
+  ioutfm    = 1,        ! Output trajectory in NetCDF binary format, 
+                        ! 0: ASCII, 1: NetCDF binary (default)
+  ntpr      = 2500,     ! Log/eneryg output interval (timesteps)
+  ntwr      = 2500,     ! Restart file output interval (timesteps) 
+  ntwx      = 2500,     ! Trajectory output interval (timesteps)
+  ntwe      = 2500,     ! Eneryg output interval (timesteps)
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ENSEMBLE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  ntt       = 3,        ! Temperature scaling, 0: Constant total temperature, 
+                        ! 1: Constant temperature using weak coupling, 
+                        ! 2: Anderson, 3: Langevin thermostat, 9, 10, 11
+  tempi     = 310.0,    ! Initial temperature (K)
+  temp0     = 310.0,    ! System temperature (K)
+  gamma_ln  = 1.0,      ! Langevin collision frequency (1 / tau) (ps-1)
+  ntp       = 1,        ! Pressure coupling
+  ntb       = 2,        ! PBC, 0: none, 1: nvt, 2: npt
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! CONSTRAINTS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  ntc       = 2,        ! SHAKE, 1: None, 2: H bonds, 3: All bonds are constrained
+  ntf       = 2,        ! Force evaluation. 1: all bonds, 2: ommit H,
+  vlimit    = 20,       ! Speed limitation for atom
+!!!!!!!!!!!!!!!!!!!!!!!!!!! NONBONDED INTERACTIONS !!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  cut       = 9,        ! Nonbonded cutoff (A)
+!   rgbmax    = 999.0,    ! Cutoff for effective Born radii calculation (A)
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! IMPLICIT SOLVENT !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!   igb       = 1,        ! Generalized Born implicit solvent
+  &end
