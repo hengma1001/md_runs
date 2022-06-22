@@ -1,0 +1,38 @@
+
+cellBasisVector1     220 0.0 0.0
+cellBasisVector2     0.0 220 0.0
+cellBasisVector3     0.0 0.0  220
+cellOrigin           0.0 0.0 0.0
+
+coordinates          input_gmx/ncd_dimers_0_2_10nm.pdb
+temperature          300
+seed                 74269
+
+switching            on
+switchdist           10
+cutoff               12
+pairlistdist         13.5
+margin               0
+stepspercycle        20
+
+PME                  on
+PMEGridSizeX         220
+PMEGridSizeY         220
+PMEGridSizeZ         220
+
+paraTypeCharmm       on
+structure            input_gmx/ncd_dimers_0_2_10nm.psf
+parameters           input_gmx/charmm.prm 
+# par_all22_prot_lipid.xplor
+# parameters           par_all22_popc.xplor
+exclude              scaled1-4
+1-4scaling           1.0
+
+timestep             1.0
+fullElectFrequency   4
+
+numsteps             500
+outputtiming         20
+
+outputname           ncd-out
+
